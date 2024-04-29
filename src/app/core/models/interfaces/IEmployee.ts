@@ -47,5 +47,5 @@ export interface IEmployee{
 export interface IDesignation{
   designationId:0
   designation:string
-  
+
 }

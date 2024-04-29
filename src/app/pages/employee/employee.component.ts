@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../core/services/employee/employee.service';
 import { IDesignation, IEmployee } from '../../core/models/interfaces/IEmployee';
 import { EmployeeObj } from '../../core/models/classes/Employee/employee';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-employee',
   standalone: true,

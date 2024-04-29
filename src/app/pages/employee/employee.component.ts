@@ -1,22 +1,25 @@
 import { HttpClient} from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { EmployeeService } from '../../core/services/employee/employee.service';
-import { IDesignation, IEmployee } from '../../core/models/interfaces/IEmployee';
+import { IDesignation, IEmployee, IRole } from '../../core/models/interfaces/IEmployee';
 import { EmployeeObj } from '../../core/models/classes/Employee/employee';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
 export class EmployeeComponent implements OnInit {
 
-  isButtonVisible:boolean=false;
+  visibleSavebutton:boolean=false;
+  visibleUpdatebutton:boolean=false;
 
 designList:IDesignation[]=[];
+roleList:IRole[]=[];
+
   employeeList:IEmployee[]=[];
   employeeobj:EmployeeObj=new EmployeeObj();
 
@@ -26,12 +29,19 @@ designList:IDesignation[]=[];
   ngOnInit(): void {
     this.getallemployee();
     this.getalldesignation();
+    this.getallrole();
   }
 
   getalldesignation(){
 this.empsrv.getAllDesignation().subscribe((res:any)=>{
   this.designList=res.data;
 })
+  }
+
+  getallrole(){
+    this.empsrv.getAllRole().subscribe((res:any)=>{
+this.roleList=res.data;
+    })
   }
 
 getallemployee(){
@@ -83,50 +93,17 @@ onDelete(eid:any){
 }
 
 reset(){
-  this.employeeobj={
-    "roleId": 0,
-    "userName": "",
-    "empCode":"",
-    "empId": 0,
-    "empName": "",
-    "empEmailId":"",
-    "empDesignationId": 0,
-    "empContactNo":  "",
-    "empAltContactNo": "",
-    "empPersonalEmailId":  "",
-    "empExpTotalYear": 0,
-    "empExpTotalMonth": 0,
-    "empCity":  "",
-    "empState": "",
-    "empPinCode": "",
-    "empAddress": "",
-    "empPerCity":  "",
-    "empPerState": "",
-    "empPerPinCode": "",
-    "empPerAddress": "",
-    "password":"",
-    // "erpEmployeeSkills": [
-    //   {
-    //     "empSkillId": 0,
-    //     "empId": 0,
-    //     "skill": "",
-    //     "totalYearExp": 0,
-    //     "lastVersionUsed": "",
-    //   }
-    // ],
-    // "ermEmpExperiences": [
-    //   {
-    //     "empExpId": 0,
-    //     "empId": 0,
-    //     "companyName": "",
-    //     "startDate": "2024-04-27T08:57:01.920Z",
-    //     "endDate": "2024-04-27T08:57:01.920Z",
-    //     "designation":  "",
-    //     "projectsWorkedOn": "",
-    //   }
-    // ]
-}
+ this.employeeobj=new EmployeeObj();
 }
 
+savebutton(){
+  this.visibleSavebutton=true;
+  this.visibleUpdatebutton=false;
+}
+
+updatebutton(){
+  this.visibleSavebutton=false;
+  this.visibleUpdatebutton=true;
+}
 
 }

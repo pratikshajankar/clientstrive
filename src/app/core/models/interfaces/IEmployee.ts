@@ -49,3 +49,8 @@ export interface IDesignation{
   designation:string
 
 }
+
+export interface IRole{
+  roleId:0
+  role:string
+}

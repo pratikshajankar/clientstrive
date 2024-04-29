@@ -11,6 +11,9 @@ DELETE_EMPLOYEE:"DeleteEmployeeByEmpId?empId=",
 // designation url
 GET_ALL_DESIGNATION:"GetAllDesignation",
 
+// role url
+GET_ALL_ROLE:"GetAllRoles",
+
 // client url
 GET_ALL_CLIENT:"GetAllClients",
 ADD_CLIENT:"AddUpdateClient",

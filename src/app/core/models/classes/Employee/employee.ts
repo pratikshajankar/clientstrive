@@ -20,6 +20,8 @@ export class EmployeeObj{
     "empPerPinCode":  string;
     "empPerAddress":  string;
     "password":  string;
+    "erpEmployeeSkills":any;
+    "ermEmpExperiences":any;
     // "erpEmployeeSkills": [
     //   {
     //     "empSkillId": 0;
@@ -63,6 +65,8 @@ export class EmployeeObj{
     this.empPerPinCode="";
     this.empPerAddress="";
     this.password="";
+    this.erpEmployeeSkills=[];
+    this.ermEmpExperiences=[];
 
     }
 }

@@ -13,6 +13,10 @@ export class EmployeeService {
 return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_DESIGNATION);
   }
 
+  getAllRole(){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_ROLE);
+  }
+
   getAllemployee(){
     return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_EMPLOYEE);
   }

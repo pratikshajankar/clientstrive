@@ -4,9 +4,7 @@
 textarea.form-control {
     height: 45px;
 }
-label{
-    font-size: 14px;
-}
+
 
 
     #tblExperience {
@@ -31,8 +29,6 @@ label{
     .btn-container button {
         margin-right: 5px;
     }
-    .btnupdate{
-        border: none;
-    }
+    
 
 

@@ -4,18 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../core/services/client/client.service';
 import { Client } from '../../core/models/classes/Client/client';
 import { IClient } from '../../core/models/interfaces/Iclient';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
 export class ClientComponent implements OnInit {
 
-  isSideDivVisible:boolean=false;
+Visiblesavebutton:boolean=false;
+Visibleupdatebutton:boolean=false;
   
 clientobj:Client=new Client();
 
@@ -74,6 +75,20 @@ onEdit(id:any){
 this.clientsrv.EditClient(id.clientId).subscribe((res:any)=>{
   this.clientobj=id;
 })
+}
+
+reset(){
+  this.clientobj=new  Client();
+}
+
+VisibleSaveButton(){
+  this.Visiblesavebutton=true;
+  this.Visibleupdatebutton=false;
+}
+
+VisibleUpdateButton(){
+  this.Visiblesavebutton=false;
+  this.Visibleupdatebutton=true;
 }
 
 }

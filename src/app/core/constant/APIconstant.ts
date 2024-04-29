@@ -9,6 +9,15 @@ UPDATE_EMPLOYEE:"UpdateEmployee",
 DELETE_EMPLOYEE:"DeleteEmployeeByEmpId?empId=",
 
 // designation url
-GET_ALL_DESIGNATION:"GetAllDesignation"
+GET_ALL_DESIGNATION:"GetAllDesignation",
+
+// client url
+GET_ALL_CLIENT:"GetAllClients",
+ADD_CLIENT:"AddUpdateClient",
+UPDATE_CLIENT:"AddUpdateClient",
+DELETE_CLIENT:"DeleteClientByClientId?clientId=",
+EDIT_CLIENT:"GetAllClients?clientId="
+
+// 
 
 }

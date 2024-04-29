@@ -1,25 +1,36 @@
-<div class="card">
-    
-        
-    <div class="card-heading">
-       <h4 class="text-center bg-info">Login</h4>
+<button class="btn btnlogin btn-success rounded text-white" data-bs-toggle="modal" data-bs-target="#login">Login</button>
+<div class="modal" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-header bg-success text-white">
+       <h4 class="text-center">Login</h4>
+     <i class="fa-solid fa-xmark" data-bs-dismiss="modal" style="margin-left: 400px;"></i>
     </div>
     
-     <div class="card-body">
+     <div class="modal-body">
+        <form #form="ngForm">
         <div class="row">
             <div class="col-12 text-center m-3">
-        <label for="">UserName</label>
-        <input type="text" [(ngModel)]="loginobj.username">
+        <label for="">UserName:</label>
+        <input type="text" class="form-control" name="username" #username="ngModel" [(ngModel)]="loginobj.username" required>
+        <div class="text-danger" *ngIf="username.touched||username.dirty">
+            <span *ngIf="username.errors">Enter UserName</span>
+        </div>
     </div>
     <div class="col-12 text-center m-3">
-        <label for="">Password</label>
-        <input type="password" [(ngModel)]="loginobj.password">
+        <label for="">Password:</label>
+        <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="loginobj.password" required>
+        <div class="text-danger" *ngIf="password.touched||password.dirty">
+        <span *ngIf="password.errors">Please Enter Password</span>
     </div>
     </div>
-   
-    <div class="h-25 w-25 ml-10 text-center justify-content-center">
-        <button class="loginbtn bg-info"  (click)="login()">Login</button>
     </div>
-
+</form>
+</div>
+<div class="modal-footer bg-secondary-subtle">
+        <button class="btn loginbtn btn-info rounded text-white"  (click)="login()">Login</button>
+    <button class="btn btn-danger rounded" (click)="reset()">Reset</button>
+</div>
+</div> 
 </div> 
 </div>

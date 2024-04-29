@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Loginobj } from '../../core/models/classes/login/login';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
+  imports: [FormsModule,CommonModule],
   imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -27,6 +28,11 @@ localStorage.setItem('loginToken',res.data.token);
 alert("Login successfully");
 })
   }
-
+  reset(){
+    this.loginobj={
+      "password": "",
+    "username": ""
+    }
+  }
 
 }

@@ -20,7 +20,7 @@ export class EmployeeObj{
     "empPerPinCode":  string;
     "empPerAddress":  string;
     "password":  string;
-    // "ErpEmployeeSkills": [
+    // "erpEmployeeSkills": [
     //   {
     //     "empSkillId": 0;
     //     "empId": 0;
@@ -28,8 +28,8 @@ export class EmployeeObj{
     //     "totalYearExp": 0;
     //     "lastVersionUsed": string;
     //   }
-    // ],
-    // "ErmEmpExperiences": [
+    // ]
+    // "ermEmpExperiences": [
     //   {
     //     "empExpId": 0;
     //     "empId": 0;

@@ -8,14 +8,15 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
 export class EmployeeComponent implements OnInit {
 
-designList:IDesignation[]=[];
+  isButtonVisible:boolean=false;
 
+designList:IDesignation[]=[];
   employeeList:IEmployee[]=[];
   employeeobj:EmployeeObj=new EmployeeObj();
 
@@ -81,8 +82,51 @@ onDelete(eid:any){
   })
 }
 
-addEmployee(){
-  
+reset(){
+  this.employeeobj={
+    "roleId": 0,
+    "userName": "",
+    "empCode":"",
+    "empId": 0,
+    "empName": "",
+    "empEmailId":"",
+    "empDesignationId": 0,
+    "empContactNo":  "",
+    "empAltContactNo": "",
+    "empPersonalEmailId":  "",
+    "empExpTotalYear": 0,
+    "empExpTotalMonth": 0,
+    "empCity":  "",
+    "empState": "",
+    "empPinCode": "",
+    "empAddress": "",
+    "empPerCity":  "",
+    "empPerState": "",
+    "empPerPinCode": "",
+    "empPerAddress": "",
+    "password":"",
+    // "erpEmployeeSkills": [
+    //   {
+    //     "empSkillId": 0,
+    //     "empId": 0,
+    //     "skill": "",
+    //     "totalYearExp": 0,
+    //     "lastVersionUsed": "",
+    //   }
+    // ],
+    // "ermEmpExperiences": [
+    //   {
+    //     "empExpId": 0,
+    //     "empId": 0,
+    //     "companyName": "",
+    //     "startDate": "2024-04-27T08:57:01.920Z",
+    //     "endDate": "2024-04-27T08:57:01.920Z",
+    //     "designation":  "",
+    //     "projectsWorkedOn": "",
+    //   }
+    // ]
 }
+}
+
 
 }

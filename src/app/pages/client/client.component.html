@@ -1,1 +1,134 @@
-<p>client works!</p>
+
+    <!-- <div class="container-fluid mt-3"> -->
+        <div class="row">
+            <div class="main-div" [ngClass]="isSideDivVisible==true?'col-7':'col-12'">
+                <div class="col-7">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <strong>Client Information</strong> 
+                         <button type="button" (click)="isSideDivVisible=true" class="btn btn-sm btn-danger"><i class="fa fa-plus"></i> Add new</button>
+                     </div>
+                     <div class="card-body">
+                        <table class="table table-srtipped table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>Contact Person Name</th>
+                                    <th>Company Name </th>
+                                    <th> City </th>
+                                    <th>GST No</th>
+                                    <th> Contact No </th>
+                                    <th>Registration No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (client of clientList; track $index) {
+                                <tr>
+                                   <td>{{client.contactPersonName}}</td>
+                                   <td>{{client.companyName}}</td>
+                                   <td>{{client.city}}</td>
+                                   <td>{{client.gstNo}}</td>
+                                   <td>{{client.contactNo}}</td>
+                                   <td>{{client.regNo}}</td>
+                                   <td>
+                                    <button class="btnedit bg-info m-1" (click)="onEdit(client)">Edit</button>
+                                    <button class="btndelete bg-info" (click)="onDelete(client)">Delete</button>
+                                   </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                     </div>
+                </div>
+            </div>
+            
+        <div class="col-5 side-div" ngIf="isSideDivVisible==true">
+            <div class="card">
+                <div class="card-header">
+                   <strong>Add Client</strong> 
+                    <button (click)="isSideDivVisible=false">Close</button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="form-control-label">Contact Person Name :</label>
+                            <input type="text" placeholder="Person Name" class="form-control" [(ngModel)]="clientobj.contactPersonName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Company Name :</label>
+                            <input type="text" placeholder="Company Name" class="form-control" [(ngModel)]="clientobj.companyName">
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="form-group col-md-6">
+                            Registration No :
+                            <input type="text" placeholder="Enter Registration no" class="form-control" [(ngModel)]="clientobj.regNo">
+                        </div>
+                        <div class="form-group col-md-6">
+                            City :
+                    <input type="text" placeholder="Enter City Name" class="form-control" [(ngModel)]="clientobj.city">
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="form-group col-md-6">
+                           <label>Pin Code :</label> 
+                    <input type="text" placeholder="Enter Pincode" class="form-control" [(ngModel)]="clientobj.pincode">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>State :</label> 
+                    <input type="text" placeholder="Enter State" class="form-control" [(ngModel)]="clientobj.state">
+                    </div>
+                    <div class="row">
+                       
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                           <label>Contact No :</label> 
+                           
+                    <input type="text"  placeholder="Contact No" class="form-control" [(ngModel)]="clientobj.contactNo">
+                    
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>No :</label> 
+                            <input type="text" placeholder="Enter GST No" class="form-control" [(ngModel)]="clientobj.gstNo">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        
+                    </div>
+                    <div class="row">
+                        
+                        <div class="form-group col-md-12">
+                           <label>Employee Strength:</label> 
+                            <textarea placeholder="Employee Strength" class="form-control" [(ngModel)]="clientobj.EmployeeStrength"></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        
+                        <div class="form-group col-md-12">
+                           <label>Address :</label> 
+                    <textarea placeholder="Address" class="form-control" [(ngModel)]="clientobj.address"></textarea>
+                        </div>
+                        
+                    </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
+                        <button class="btn btn-sm btn-success" (click)="onSave()" style="margin-right: 2px;"><i class="fa fa-save"></i>
+                            Save</button>
+                            <button class="btnupdate bg-info rounded" (click)="onUpdate()">Update</button>
+                       <button class="btn btn-sm btn-danger"><i class="fa fa-close"></i>Cancel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>  
+    </div>  
+    </div>
+</div>
+

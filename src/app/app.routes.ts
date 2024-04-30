@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { ClientComponent } from './pages/client/client.component';
 import { ProjectComponent } from './pages/project/project.component';
+import { ProjectchangeComponent } from './pages/projectchange/projectchange.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,8 @@ export const routes: Routes = [
     },
     {
         path:'project',component:ProjectComponent
+    },
+    {
+        path:'projectchange',component:ProjectchangeComponent
     }
-
 ];

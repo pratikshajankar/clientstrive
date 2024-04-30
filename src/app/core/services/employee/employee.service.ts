@@ -37,4 +37,8 @@ return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_DESIGNATION);
     return this.http.delete(APIConstant.API_URL+APIConstant.DELETE_EMPLOYEE+eid);
   }
 
+  getProjectEmployee(){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_PROJECT_EMPLOYEE);
+  }
+
 }

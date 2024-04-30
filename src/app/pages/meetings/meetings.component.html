@@ -1,0 +1,235 @@
+<div class="row">
+    <nav aria-label="breadcrumb mt-5">
+        <ol class="breadcrumb mt-3">
+            <li class="breadcrumb-item"><i class="fa-solid fa-house-circle-check"></i><a routerLink="/login">
+                    Login</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a routerLink="/meeting"></a>Project Meetings Details</li>
+        </ol>
+    </nav>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                <strong class="text-white">Project Meetings</strong>
+                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                 (click)="Showsavebutton()"   data-bs-target="#meetingform"><i class="fa fa-plus"></i> Add new</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-srtipped table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Meeting Date</th>
+                            <th>Start Time </th>
+                            <th>End Time</th>
+                            <th>Meeting Medium</th>
+                            <th>Meeting Title</th>
+                            <th>Meeting Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (meeting of meetingList; track $index) {
+                        <tr>
+                            <td>{{meeting.meetingDate|date}}</td>
+                            <td>{{meeting.startTime}}</td>
+                            <td>{{meeting.endTime}}</td>
+                            <td>{{meeting.meetingMedium}}</td>
+                            <td>{{meeting.meetingTitle}}</td>
+                            <td>{{meeting.meetingStatus}}</td>
+                            <td>
+                                <button class="btn btnedit btn-warning m-1" data-bs-toggle="modal"
+                                    data-bs-target="#meetingform" (click)="Showupdatebutton()" 
+                                     (click)="onEdit(meeting)"><i
+                                        class="fa-solid fa-file-pen"></i></button>
+                                <button class="btn btndelete btn-danger"><i class="fa-solid fa-trash-arrow-up"
+                                        (click)="onDelete(meeting)"></i></button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal" id="meetingform">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <strong class="text-white">Add Meeting</strong>
+                <i class="fa-solid fa-xmark" data-bs-dismiss="modal"
+                style="margin-left: 640px;color: white;font-size: 20px;"></i>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Meeting Leadby</label>
+                            <select class="form-control" name="meetinglead" [(ngModel)]="meetingobj.meetingLeadByEmpId">
+                                <option value="0" selected>Select Employee</option>
+                                @for (projemp of employeeList; track $index) {
+                                <option [value]="projemp.empId">{{projemp.empName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Project</label>
+                            <select class="form-control" name="project" [(ngModel)]="meetingobj.projectId">
+                                <option value="0" selected>Project Name</option>
+                                @for (proj of projectList; track $index) {
+                                <option [value]="proj.clientProjectId">{{proj.projectName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Meeting Date :</label>
+                            <input type="date" name="date" #date="ngModel" [(ngModel)]="meetingobj.meetingDate"
+                                placeholder="Select Meeting Date" class="form-control" required>
+                            @if (date.touched||date.dirty) {
+                            <div class="text-danger">
+                                @if (date.errors) {
+                                <span>Enter meeting date</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <label>Start Time:</label>
+                            <input type="time" name="starttime" #starttime="ngModel" [(ngModel)]="meetingobj.startTime"
+                                placeholder="Enter Start Time" class="form-control" required>
+                            @if (starttime.touched||starttime.dirty) {
+                            <div class="text-danger">
+                                @if (starttime.errors) {
+                                <span>Enter Meeting Start Time</span>
+                                }
+                            </div>
+                            }
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label>End Time :</label>
+                            <input type="time" name="endtime" #endtime="ngModel" [(ngModel)]="meetingobj.endTime"
+                                placeholder="Enter End Time" class="form-control" required>
+                            @if (endtime.touched||endtime.dirty) {
+                            <div class="text-danger">
+                                @if (endtime.errors) {
+                                <span>Enter meeting end time</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <label>Meeting Medium :</label>
+                            <input type="text" name="meetmedium" #meetmedium="ngModel"
+                                [(ngModel)]="meetingobj.meetingMedium" placeholder="Enter Meeting Medium "
+                                class="form-control" required>
+                            @if (meetmedium.touched||meetmedium.dirty) {
+                            <div class="text-danger">
+                                @if (meetmedium.errors) {
+                                <span>Meeting Medium</span>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <div class="col-md-6 d-flex align-items-center">
+                            <input type="checkbox" name="recavailable" #recavailable="ngModel"
+                                [(ngModel)]="meetingobj.isRecordingAvailable" checked
+                                style="height: 20px; width: 16px;margin-right: 8px;">
+                            <label>Is Recording Available</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Recording Url :</label>
+                            <input type="text" name="recurl" #recurl="ngModel" [(ngModel)]="meetingobj.recordingUrl"
+                                placeholder="Enter Recording Url" class="form-control" required>
+                            @if (recurl.touched||recurl.dirty) {
+                            <div class="text-danger">
+                                @if (recurl.errors) {
+                                <span>Please Add Meeting Recording</span>
+                                }
+                            </div>
+                            }
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label>Meeting Notes :</label>
+                            <input type="text" name="meetnote" #meetnote="ngModel" [(ngModel)]="meetingobj.meetingNotes"
+                                placeholder="Enter Meeting Notes" class="form-control" required>
+                            @if (meetnote.touched||meetnote.dirty) {
+                            <div class="text-danger">
+                                @if (meetnote.errors) {
+                                <span>Add Meeting Notes</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <label>Client Person Name :</label>
+                            <input type="text" name="clipernm" #clipernm="ngModel"
+                                [(ngModel)]="meetingobj.clientPersonNames" placeholder="Enter Client Person Name"
+                                class="form-control" required>
+                            @if (clipernm.touched||clipernm.dirty) {
+                            <div class="text-danger">
+                                @if (clipernm.errors) {
+                                <span>Enter Client Person Name</span>
+                                }
+                            </div>
+                            }
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>Meeting Title :</label>
+                            <input type="text" name="meettitle" #meettitle="ngModel"
+                                [(ngModel)]="meetingobj.meetingTitle" placeholder="Meeting Title" class="form-control"
+                                required>
+                            @if (meettitle.touched||meettitle.dirty) {
+                            <div class="text-danger">
+                                @if (meettitle.errors) {
+                                <span>Enter meeting title</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <label>Meeting Status :</label>
+                            <input type="text" name="meetstatus" #meetstatus="ngModel"
+                                [(ngModel)]="meetingobj.meetingStatus" placeholder="Enter Meeting Status"
+                                class="form-control" required>
+                            @if (meetstatus.touched||meetstatus.dirty) {
+                            <div class="text-danger">
+                                @if (meetstatus.errors) {
+                                <span>Give Meeting Status</span>
+                                }
+                            </div>
+                            }
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer bg-secondary-subtle">
+                <div class="row">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
+                        @if (meetingobj.projectMeetingId==0) {
+                
+                        <button class="btn btn-sm btn-success m-1" (click)="VisibleSaveButton" (click)="onSave()"><i
+                                class="fa fa-save"></i>
+                            Save</button>
+                        
+                        }
+                        @if (meetingobj.projectMeetingId!=0) {
+                        <button class="btn btn-sm btn-info m-1" (click)="VisibleUpdateButton" (click)="onUpdate()">Update</button>
+                        }
+                        <button class="btn btn-danger m-1" (click)="onreset()">Reset</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

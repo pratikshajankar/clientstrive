@@ -76,7 +76,14 @@ this.changeprojsrv.GetChangeprojectByid(id.projectChangeId).subscribe((res:any)=
 
 onDelete(cid:any){
 this.changeprojsrv.DeletechangeProject(cid.projectChangeId).subscribe((res:any)=>{
-  this.changeprojogj=cid;
+  // this.changeprojogj=cid;
+  if(res.result){
+    alert("data deleted successfully");
+    this.getallchangeproject();
+  }
+  else{
+    alert(res.message);
+  }
 })
 }
 
@@ -103,4 +110,7 @@ Showsavebutton(){
   this.Visibleupdatebutton=false;
 }
 
+onreset(){
+  this.changeprojogj=new Changeproject();
+}
 }

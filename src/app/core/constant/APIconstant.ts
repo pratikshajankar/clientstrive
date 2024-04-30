@@ -36,6 +36,16 @@ UPDATE_CHANGE_PROJECT:"AddUpdateProjectChange",
 DELETE_CHANGED_PROJECT:"DeleteChangeByChangeId?changeId=",
 
 // PROJECT meeting url
+GET_ALL_MEETINGS:"GetAllMeetings",
+GET_MEETINGBY_PROJECTID:"GetAllMeetingsByProjectId?projectId=",
+ADD_MEETING:"AddUpdateProjectMeeting",
+UPDATE_MEETING:"AddUpdateProjectMeeting",
+DELETE_MEETING:"DeleteMeetingByMeetingId?meetingId=",
+
+// employee on project url
+GET_ALL_PROJECT_EMPLOYEE:"GetAllProjectsEmployees"
+
+// payment url
 
 
 

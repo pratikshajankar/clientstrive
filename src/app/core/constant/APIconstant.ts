@@ -44,8 +44,9 @@ DELETE_MEETING:"DeleteMeetingByMeetingId?meetingId=",
 
 // employee on project url
 GET_ALL_PROJECT_EMPLOYEE:"GetAllProjectsEmployees",
-GET_EMP_BY_PEOJECTID:"GetEmployeesByProjectId?projectid=",
-ADD_EMPLOYEE_ON_OROJECT:"AddEmployeeToProject",
+GET_EMP_BY_PROJECTID:"GetEmployeesByProjectId?projectid=",
+ADD_EMPLOYEE_ON_PROJECT:"AddEmployeeToProject",
+UPDATE_EMPLOYEE_ON_PROJECT:"AddEmployeeToProject",
 DELETE_EMPLOYEE_ON_PROJECT:"DeleteEmployeeFromProject?projectEmpId=",
 
 // payment url

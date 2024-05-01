@@ -7,6 +7,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { ProjectchangeComponent } from './pages/projectchange/projectchange.component';
 import { MeetingsComponent } from './pages/meetings/meetings.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { EmployeeonprojectComponent } from './pages/employeeonproject/employeeonproject.component';
 
 export const routes: Routes = [
     {
@@ -31,5 +32,8 @@ export const routes: Routes = [
     },
     {
         path:'payment',component:PaymentComponent
+    },
+    {
+        path:'employeeonproject',component:EmployeeonprojectComponent
     }
 ];

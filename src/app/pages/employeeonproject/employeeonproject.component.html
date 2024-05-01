@@ -1,0 +1,133 @@
+
+        <div class="row">
+            <nav aria-label="breadcrumb mt-5">
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item"><i class="fa-solid fa-house-circle-check"></i><a routerLink="/login">
+                            Login</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a routerLink="/employeeonproject"></a>Employee On Project Details</li>
+                </ol>
+            </nav>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-danger d-flex justify-content-between align-items-center">
+                        <strong class="text-white">Employee On Project Information</strong> 
+                         <button type="button" class="btn btn-sm btn-info text-white" (click)="Showsavebutton()" data-bs-toggle="modal" data-bs-target="#projectempform"><i class="fa fa-plus"></i> Add Employee on Project</button>
+                     </div>
+                     <div class="card-body">
+                        <table class="table table-srtipped table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th> Employee Designation </th>
+                                    <th>Project Name </th>
+                                    <th>Client Name</th>
+                                    <th>Added Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (emp of emponprojectList; track $index) {
+                                <tr>
+                                <td>{{emp.empName}}</td>
+                                <td>{{emp.empDesignation}}</td>
+                                <td>{{emp.projectName}}</td>
+                                <td>{{emp.clientName}}</td>
+                                <td>{{emp.addedDate}}</td>
+                                <td>
+                                    <button class="btn btnedit btn-warning m-1" (click)="Showupdatebutton()" data-bs-toggle="modal" data-bs-target="#projectempform" (click)="onEdit(emp)"><i class="fa-solid fa-file-pen"></i></button>
+                                    <button class="btn btndelete btn-danger"><i class="fa-solid fa-trash-arrow-up" (click)="onDelete(emp)"></i></button>
+                                </td>
+                            </tr>
+                        }
+                            </tbody>
+                        </table>
+                     </div>
+                </div>
+            </div>
+        </div>
+    
+            <div class="modal" id="projectempform">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                <div class="modal-header bg-info">
+                   <strong>Add Employee On Project</strong> 
+                   <i class="fa-solid fa-xmark" data-bs-dismiss="modal" style="margin-left: 250px;color: white;font-size: 20px;"></i>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="form-control-label">Employee Name:</label>
+                            <select name="empname" [(ngModel)]="emponprojectobj.empId">
+                              <option  value="0" selected>Select Employee</option>
+                              @for (empnm of empList; track $index) {
+                                <option [value]="empnm.empId">{{empnm.empName}}</option>
+                              }
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Employee Designation:</label>
+                            <select name="empdesign" [(ngModel)]="emponprojectobj.employeeId">
+                               <option [value]="0" selected>Select Employee Designation</option>
+                               @for (empdesign of empList; track $index) {
+                               <option [value]="empdesign.empId">{{empdesign.empDesignation}}</option>
+                            }
+                            </select>
+                        </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="">Client Name</label><br>
+                        <select name="clientnm" [(ngModel)]="emponprojectobj.clientId">
+                        <option [value]="0" selected>Select Client</option>
+                        @for (clientnm of clientList; track $index) {
+                            <option [value]="clientnm.clientId">{{clientnm.companyName}}</option>
+                        }
+                        </select>
+                    </div>
+                        
+                        <div class="form-group col-md-6">
+                    <label for="">Project Name</label>
+                    <select name="projnm" [(ngModel)]="emponprojectobj.clientProjectId">
+                        <option [value]="0" selected>Select Project Name</option>
+                        @for (projnm of projectList; track $index) {
+                            <option [value]="projnm.clientProjectId">{{projnm.projectName}}</option>
+                        }
+                    </select>
+                </div>
+                        
+                        <div class="form-group col-md-6">
+                           <label>Start Date:</label> 
+                    <input type="date" placeholder="Enter Start Date" class="form-control" [(ngModel)]="emponprojectobj.startDate">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Expected End Date:</label> 
+                    <input type="date" placeholder="Enter Expected End Date" class="form-control" [(ngModel)]="emponprojectobj.expectedEndDate">
+                    </div>
+                    
+                       
+                        <div class="form-group col-md-6">
+                            <label>Added Date:</label> 
+                            <input type="date" placeholder="Added Date" class="form-control" [(ngModel)]="emponprojectobj.addedDate">
+                        </div>
+            </div>              
+           
+            <div class="modal-footer bg-info-subtle">
+                <div class="row">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
+                        @if (emponprojectobj.projectEmpId==0) {
+                        <button class="btn btn-sm btn-success" (click)="VisibleSaveButton" (click)="onSave()" style="margin-right: 2px;"><i class="fa fa-save"></i>
+                            Save</button>
+                        }
+                        @if (emponprojectobj.projectEmpId!=0) {
+                            <button class="btn btn-info" (click)="VisibleUpdateButton" (click)="onUpdate()">Update</button>
+                        }
+                       <button class="btn btn-sm btn-danger">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+

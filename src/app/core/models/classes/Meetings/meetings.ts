@@ -1,7 +1,10 @@
 export class Meetings{
     "projectMeetingId": 0;
     "projectId": 0;
+    "companyName":string;
     "meetingLeadByEmpId": 0;
+    "leadByEmployeName":string
+    "clientId":0;
     "meetingDate":string;
     "startTime":string;
     "endTime": string;
@@ -27,6 +30,9 @@ export class Meetings{
         this.clientPersonNames="";
         this.meetingTitle="";
         this.meetingStatus="";
+        this.clientId=0;
+        this.leadByEmployeName="";
+        this.companyName="";
 
     }
   

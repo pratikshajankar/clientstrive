@@ -75,14 +75,25 @@
                             </select>
                         </div>
                         <div class="col-md-6">
+                            <label for="">Company Name</label>
+                            <select class="form-control" name="project" [(ngModel)]="meetingobj.projectId">
+                                <option value="0" selected>Project Name</option>
+                                @for (client of clientList; track $index) {
+                                <option [value]="client.clientId">{{client.companyName}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="">Project</label>
                             <select class="form-control" name="project" [(ngModel)]="meetingobj.projectId">
                                 <option value="0" selected>Project Name</option>
                                 @for (proj of projectList; track $index) {
-                                <option [value]="proj.clientProjectId">{{proj.projectName}}</option>
+                                <option [value]="proj.clientProjectId">{{proj}}</option>
                                 }
                             </select>
                         </div>
+
                         <div class="col-md-6">
                             <label>Meeting Date :</label>
                             <input type="date" name="date" #date="ngModel" [(ngModel)]="meetingobj.meetingDate"

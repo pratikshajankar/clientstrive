@@ -12,6 +12,7 @@ export class Projectobj{
       "projectDetails":string;
       "contactPersonEmailId":string;
       "clientId":0;
+      "empId":0;
 
 
       constructor(){
@@ -28,5 +29,6 @@ export class Projectobj{
         this.projectDetails="";
         this.contactPersonEmailId="";
         this.clientId=0;
+        this.empId=0;
       }
 }

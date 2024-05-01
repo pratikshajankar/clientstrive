@@ -9,6 +9,8 @@ import { IEmployee } from '../../core/models/interfaces/IEmployee';
 import { IClientProject } from '../../core/models/interfaces/Iclientproject';
 import { ClientprojectService } from '../../core/services/clientproject/clientproject.service';
 import { DatePipe } from '@angular/common';
+import { ClientService } from '../../core/services/client/client.service';
+import { IClient } from '../../core/models/interfaces/Iclient';
 
 @Component({
   selector: 'app-meetings',
@@ -24,16 +26,18 @@ export class MeetingsComponent implements OnInit {
 
   employeeList:IEmployee[]=[];
   projectList:IClientProject[]=[];
+  clientList:IClient[]=[];
 
 meetingList:IMeetings[]=[];
 meetingobj:Meetings=new Meetings();
 
-  constructor(private http:HttpClient,private meetingsrv:MeetingService,private empsrv:EmployeeService,private projectsrv:ClientprojectService){}
+  constructor(private http:HttpClient,private meetingsrv:MeetingService,private empsrv:EmployeeService,private projectsrv:ClientprojectService,private clientsrv:ClientService){}
  
   ngOnInit(): void {
     this.getallmeetings();
     this.getprojectemployee();
     this.getallproject();
+    this.getallclient();
   }
 
   getprojectemployee(){
@@ -46,6 +50,12 @@ meetingobj:Meetings=new Meetings();
 this.projectsrv.getAllClientProject().subscribe((res:any)=>{
   this.projectList=res.data;
 })
+  }
+
+  getallclient(){
+    this.clientsrv.getAllClient().subscribe((res:any)=>{
+this.clientList=res.data;
+    })
   }
 
   getallmeetings(){

@@ -1,5 +1,6 @@
 export interface IClientProject{
   "projectName": string;
+  "empId":0;
   "startDate": string;
   "expectedEndDate": string;
   "clientProjectId": 0;

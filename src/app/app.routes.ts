@@ -6,6 +6,7 @@ import { ClientComponent } from './pages/client/client.component';
 import { ProjectComponent } from './pages/project/project.component';
 import { ProjectchangeComponent } from './pages/projectchange/projectchange.component';
 import { MeetingsComponent } from './pages/meetings/meetings.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 export const routes: Routes = [
     {
@@ -27,5 +28,8 @@ export const routes: Routes = [
     },
     {
         path:'meetings',component:MeetingsComponent
+    },
+    {
+        path:'payment',component:PaymentComponent
     }
 ];

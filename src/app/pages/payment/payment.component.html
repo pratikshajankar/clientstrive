@@ -1,0 +1,149 @@
+
+                <div class="row">
+                    <nav aria-label="breadcrumb mt-5">
+                        <ol class="breadcrumb mt-3">
+                            <li class="breadcrumb-item"><i class="fa-solid fa-house-circle-check"></i><a routerLink="/login">
+                                    Login</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a routerLink="/payment"></a>Payment Details</li>
+                        </ol>
+                    </nav>
+            <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                            <strong class="text-white">Payment Information</strong> 
+                            <button type="button"  (click)="ShowSavebutton()" data-bs-toggle="modal" data-bs-target="#paymentform" class="btn btn-sm btn-danger"><i class="fa fa-plus"></i> Add new</button>
+                         </div>
+                        <div class="card-body">
+                            <table class="table table-srtipped table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th>Payment Date</th>
+                                        <th>Payment Mode</th>
+                                        <th>Amount</th>
+                                        <th>Naration </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (pay of paymentList; track $index) {
+                                        <tr>
+                                            <td>{{pay.paymentDate|date}}</td>
+                                            <td>{{pay.paymentMode}}</td>
+                                            <td>{{pay.amount}}</td>
+                                            <td>{{pay.naration}}</td>
+                                            <td>
+                                                <button class="btn btnedit btn-warning m-1" (click)="Showupdatebutton()" data-bs-toggle="modal" data-bs-target="#paymentform" (click)="onEdit(pay)"><i class="fa-solid fa-file-pen"></i></button>
+                                                <button class="btn btndelete btn-danger"><i class="fa-solid fa-trash-arrow-up" (click)="onDelete(pay)"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+                    <div class="modal" id="paymentform">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <strong class="text-white">Add Payment Information</strong>
+                            <i class="fa-solid fa-xmark" data-bs-dismiss="modal" style="margin-left: 250px;color: white;font-size: 20px;"></i>
+                        </div>
+                        <div class="modal-body">
+                            <form #form="ngForm">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Company Name:</label>  <br>
+                                      <select name="projectnm" [(ngModel)]="paymentobj.companyName">
+                                    <option value="0" selected>Select Company</option>
+                                    @for (comnm of clientList; track $index) {
+                                        <option [value]="comnm.clientId">{{comnm.companyName}}</option>
+                                    }
+                                    </select>
+                                  </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Project Name:</label>  <br>
+                                      <select name="projectnm" [(ngModel)]="paymentobj.projectId">
+                                    <option value="0" selected>Select Project</option>
+                                    @for (proj of projectList; track $index) {
+                                        <option [value]="proj.clientProjectId">{{proj.projectName}}</option>
+                                    }
+                                    </select>
+                                  </div>
+
+                                <div class="form-group col-md-6">
+                                  <label>Payment Date:</label>  
+                                    <input type="date" name="paydate" #paydate="ngModel" [(ngModel)]="paymentobj.paymentDate" placeholder="Enter Date" class="form-control" required>
+                                    @if (paydate.touched||paydate.dirty) {
+                                        <div class="text-danger">
+                                            @if (paydate.errors) {
+                                                <span>Enter Payment Date</span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                   <label>Payment Mode:</label> 
+                                    <input type="text" name="paymode" #paymode="ngModel" [(ngModel)]="paymentobj.paymentMode" placeholder="Enter Payment Mode" class="form-control" required>
+                                    @if (paymode.touched||paymode.dirty) {
+                                        <div class="text-danger">
+                                            @if (paymode.errors) {
+                                                <span>Enter Payment Mode</span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                  <label>Amount :</label>  
+                                     <input type="text" name="amount" #amount="ngModel" [(ngModel)]="paymentobj.amount" placeholder="Enter Amount" class="form-control" required>
+                                     @if (amount.touched||amount.dirty) {
+                                        <div class="text-danger">
+                                            @if (amount.errors) {
+                                                <span>Enter Amount</span>
+                                            }
+                                        </div>
+                                     }
+                                 </div>
+
+                                 <div class="form-group col-md-6">
+                                  <label>Narration :</label>  
+                                     <input type="text" name="narration" #narration="ngModel" [(ngModel)]="paymentobj.naration" placeholder="Enter Narration" class="form-control" required>
+                                     @if (narration.touched||narration.dirty) {
+                                        <div class="text-danger">
+                                            @if (narration.errors) {
+                                                <span>Enter Naration</span>
+                                            }
+                                        </div>
+                                     }
+                                 </div>
+                            </div>   
+                        </form>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="form-group col-md-12 d-flex justify-content-center">
+                                    @if (VisibleSavebutton) {
+                                    <button class="btn btn-sm btn-success" (click)="onSave()" style="margin-right: 2px;"><i class="fa fa-save"></i>
+                                        Save</button>
+                                    }
+                                    @if (Visibleupdatebutton) {
+                                        <button class="btn btn-info" (click)="Visibleupdatebutton" (click)="onUpdate()">Update</button>
+                                    }
+                                        <button class="btn btn-sm btn-danger" >Reset</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+            
+   
+
+    

@@ -43,10 +43,17 @@ UPDATE_MEETING:"AddUpdateProjectMeeting",
 DELETE_MEETING:"DeleteMeetingByMeetingId?meetingId=",
 
 // employee on project url
-GET_ALL_PROJECT_EMPLOYEE:"GetAllProjectsEmployees"
+GET_ALL_PROJECT_EMPLOYEE:"GetAllProjectsEmployees",
+GET_EMP_BY_PEOJECTID:"GetEmployeesByProjectId?projectid=",
+ADD_EMPLOYEE_ON_OROJECT:"AddEmployeeToProject",
+DELETE_EMPLOYEE_ON_PROJECT:"DeleteEmployeeFromProject?projectEmpId=",
 
 // payment url
-
-
+GET_ALL_PAYMENT:"GetAllPayments",
+GET_ALL_PAYMENTBY_PROJECTID:"GetAllPaymentsByProjectId?projectId=",
+GET_ALL_PAYMENTBY_CLIENTID:"GetAllPaymentsByClientId?clientId=",
+ADD_PAYMENT:"AddUpdatePayment",
+UPDATE_PAYMENT:"AddUpdatePayment",
+DELETE_PAYMENTBY_PAYID:"DeletePaymentByPaymentId?paymentId=",
 
 }

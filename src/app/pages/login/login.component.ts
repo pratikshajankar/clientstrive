@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
 this.http.post("https://freeapi.gerasim.in/api/ClientStrive/Login",this.loginobj).subscribe((res:any)=>{
 localStorage.setItem('loginToken',res.data.token);
 this.router.navigateByUrl('/navbar')
-// alert("Login successfully");
+alert("Login successfully");
 })
   }
-  
+
   reset(){
     this.loginobj={
       "password": "",
